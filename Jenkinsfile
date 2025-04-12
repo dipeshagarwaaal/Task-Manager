@@ -24,10 +24,8 @@ pipeline {
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                     bat """
-                    az login --service-principal ^
-                      --username %ARM_CLIENT_ID% ^
-                      --password %ARM_CLIENT_SECRET% ^
-                      --tenant %ARM_TENANT_ID%
+                    
+                      
 
                     echo "Navigating to Terraform Directory: %TF_WORKING_DIR%"
                     cd %TF_WORKING_DIR%
@@ -47,10 +45,8 @@ pipeline {
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                     bat """
-                    az login --service-principal ^
-                      --username %ARM_CLIENT_ID% ^
-                      --password %ARM_CLIENT_SECRET% ^
-                      --tenant %ARM_TENANT_ID%
+                   
+                      
 
                     echo "Navigating to Terraform Directory: %TF_WORKING_DIR%"
                     cd %TF_WORKING_DIR%
@@ -70,10 +66,8 @@ pipeline {
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                     bat """
-                    az login --service-principal ^
-                      --username %ARM_CLIENT_ID% ^
-                      --password %ARM_CLIENT_SECRET% ^
-                      --tenant %ARM_TENANT_ID%
+                    
+                      
 
                     echo "Navigating to Terraform Directory: %TF_WORKING_DIR%"
                     cd %TF_WORKING_DIR%
@@ -100,10 +94,8 @@ pipeline {
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                     bat """
-                    az login --service-principal ^
-                      --username %ARM_CLIENT_ID% ^
-                      --password %ARM_CLIENT_SECRET% ^
-                      --tenant %ARM_TENANT_ID%
+                    
+                     
 
                     powershell Compress-Archive -Path build/* -DestinationPath build.zip -Force
 
