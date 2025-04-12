@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         AZURE_CREDENTIALS_ID = 'jenkins-pipeline-sp'
-        RESOURCE_GROUP = 'WebServiceResourceforReactProject'
-        APP_SERVICE_NAME = 'AgarwalReactWebAppfinal'
+        RESOURCE_GROUP = 'WebService'
+        APP_SERVICE_NAME = 'Agarwal12345'
         TF_WORKING_DIR='.'
     }
 
@@ -17,10 +17,8 @@ pipeline {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
                     bat """
-                    echo "Checking Terraform Installation..."
-                    terraform -v
-                    echo "Navigating to Terraform Directory: $TF_WORKING_DIR"
-                    cd $TF_WORKING_DIR
+                    echo "Navigating to Terraform Directory: %TF_WORKING_DIR%"
+                    cd %TF_WORKING_DIR%
                     echo "Initializing Terraform..."
                     terraform init
                     """
@@ -57,11 +55,12 @@ pipeline {
     
 
         stage('Build') {
-            steps {
-                bat 'npm install'
-                bat 'npm run build'
-            }
-        }
+    steps {
+        bat 'npm install'        // Install dependencies
+        bat 'npm run build'      // Build the production-ready React app
+    }
+}
+
 
        stage('Deploy') {
     steps {
@@ -69,6 +68,7 @@ pipeline {
             bat """
             powershell Compress-Archive -Path build/* -DestinationPath build.zip -Force
             az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
+
             """
         }
     }
